@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "2528a837-5d9d-4d9c-a21a-f0e73e7ba285",
+		"name": "lab1 collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22788109"
+	},
+	"item": [
+		{
+			"name": "search cost by user and category",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/?userId=1&categoryId=1",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						""
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "1"
+						},
+						{
+							"key": "categoryId",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search cost by user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/1",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/categories",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new cost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"new-cost\": {\r\n        \"id\": \"1\",\r\n        \"userId\": \"1\",\r\n        \"categoryId\": \"1\",\r\n        \"sum\": \"1000\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/new-cost",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"new-cost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new category",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"new-category\": {\r\n        \"id\": \"2\",\r\n        \"title\": \"title2\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/new-category",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"new-category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create new user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\" : {\r\n        \"id\":\"1\",\r\n        \"name\":\"Cat\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://nest-js-lab1.herokuapp.com/new-user",
+					"protocol": "https",
+					"host": [
+						"nest-js-lab1",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"new-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
