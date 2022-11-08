@@ -1,92 +1,62 @@
 import { Injectable } from '@nestjs/common';
-import { UserInterface } from './user.interface';
-import { CategoryInterface } from './category.interface';
-import { CostInterface } from './cost.interface';
+import { User } from './user/user.entity';
+
+import {CreateUserDto} from "./user/create-user.dto";
+import {CreateCategoryDto} from "./category/create-category.dto";
+import {ICategory} from "./category/category.interface";
+import {Category} from "./category/category.entity";
+import {CreateCostDto} from "./cost/create-cost.dto";
+import {Cost} from "./cost/cost.entity";
+import {ICost} from "./cost/cost.interface";
 @Injectable()
 export class AppService {
-  //ok
-  createUser(newUser: UserInterface, users: UserInterface[]): any {
-    let user: UserInterface = {
-      id: newUser.id,
-      name: newUser.name
-    }
-    users.push(user);
-    // console.log(users); //- array test
-    
+
+  private USERS: User[] = [];
+  private CATEGORIES: Category[] = [];
+  private COSTS: Cost[] = [];
+  createUser(newUser: CreateUserDto): string {
+    let user = new User(newUser.id, newUser.name);
+    this.USERS.push(user);
+    return 'User was created';
   }
 
-  //ok
-  createCategory(newCategory: CategoryInterface, categories: CategoryInterface[]): void {
-    let category: CategoryInterface= {
-      id: newCategory.id,
-      title: newCategory.title
-    }
-    categories.push(category);
-    //console.log(categories); //- array test
+  createCategory(newCategory: CreateCategoryDto): string {
+    let category = new Category(newCategory.id, newCategory.title);
+    this.CATEGORIES.push(category)
+    return 'Category was created';
   }
 
-  //will fix on second lab
-  // ok
-  createCost(newCost: any, costs: CostInterface[], /* users: UserInterface[], categories: CategoryInterface[]*/): any {
-    // let getUserId: boolean = false;  
-    // let getCategoryId: boolean = false;
-    // users.forEach((item): void => {          - is not working because arrays
-    //     if (item.id == newCost.userId){      - cannot cache in working
-    //       getUserId = true;                  - !!! i must use database or json file
-    //     }
-    //   })
-    // categories.forEach((item): void => {
-    //   if (item.id == newCost.categoryId){
-    //     getCategoryId = true;
-    //   }
-    // }) 
-    // if (getCategoryId && getUserId) {
-      let cost: CostInterface = {
-        id: newCost.id,
-        userId: newCost.userId,
-        categoryId: newCost.categoryId,
-        time: new Date,
-        sum: newCost.sum
-      }
-      costs.push(cost);
-      
-    // } else {
-    //   return "no such user or category id"
-    // } 
+  createCost(newCost: CreateCostDto): string {
+    let cost = new Cost(newCost.id, newCost.userId, newCost.categoryId, newCost.date ,newCost.sum);
+    this.COSTS.push(cost);
+    return 'Cost was created';
   }
-
-  //ok
-  getCategories(categories: CategoryInterface[]): CategoryInterface[] {
-    return categories;
+  getCategories(): ICategory[] {
+    return this.CATEGORIES;
   }
-  //ok
-  getCostsByUserId(userId: any, costs: CostInterface[]): CostInterface[] {
-    let array: CostInterface[] = [];
-    costs.forEach((item): void => {
-      if (item.userId == +userId) {
-        array.push(item);
+  getUsers(): User[] {
+    return this.USERS;
+  }
+  getCosts(): Cost[] {
+    return this.COSTS;
+  }
+  getCostsByUserId(userId: number): Cost[]{
+    const costsArray: Cost[] = []
+    this.COSTS.forEach((item): void => {
+      if (item.userId == userId){
+        costsArray.push(item);
       }
     })
-
-    return array;
+    return costsArray;
   }
-  // ok
-  getCostsById(userId: number, categoryId: number, costs: CostInterface[]): any {
-    let array: any = [];
-    
-    costs.forEach((item): void => {
-      if (item.userId == +userId && item.categoryId == +categoryId){
-        array.push(item);
+
+  getCostsById(userId: number, categoryId: number): ICost[] {
+    const costsArray: ICost[] = []
+    this.COSTS.forEach((item): void => {
+      if (item.userId == userId && item.categoryId == categoryId){
+        costsArray.push(item);
       }
     })
-    return array;
-    
-  }
-  // ok
-  newError(e: Error): string {
-    console.log(e.message);
-    return "Something is wrong with data"
+    return costsArray;
   }
 }
-
-
