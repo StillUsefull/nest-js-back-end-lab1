@@ -1,4 +1,4 @@
-import {Controller, Get, Body, Post, Query, UsePipes, ValidationPipe} from '@nestjs/common';
+import {Controller, Get, Body, Post, Query, UsePipes, ValidationPipe, ParseIntPipe} from '@nestjs/common';
 import { AppService } from './app.service';
 
 import {CreateUserDto} from "./user/create-user.dto";
@@ -9,6 +9,7 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  
   getHello(): string {
     return 'Hello World'
   }
@@ -32,8 +33,8 @@ export class AppController {
   getCategories(): any {
     return this.appService.getCategories();
   }
+
   @Get('users')
-  
   getUsers(){
     this.appService.getUsers();
   }
@@ -42,7 +43,11 @@ export class AppController {
     this.appService.getCosts();
   }
   @Get('cost-by-user')
-  getCostsByUserId(@Query() userId: number){
+  getCostsByUserId(@Query('userId', ParseIntPipe) userId: number){
     this.appService.getCostsByUserId(userId);
+  }
+  @Get('cost-by-id')
+  getCostsById(@Query('userId', ParseIntPipe) userId: number, @Query('categoryId', ParseIntPipe) categoryId: number){
+    this.appService.getCostsById(userId, categoryId);
   }
 }
