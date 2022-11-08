@@ -10,4 +10,5 @@ export class User implements IUser {
         this.name = name;
         this.defaultCurrency = defaultCurrency;
     }
+    
 }
