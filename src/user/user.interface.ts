@@ -1,7 +1,7 @@
-import {CurrencyEnum} from "../currency/currency.enum";
+import {Currency} from "../currency/currency.enum";
 
 export interface IUser {
     id: number,
     name: string,
-    defaultCurrency: CurrencyEnum;
+    defaultCurrency: Currency;
 }

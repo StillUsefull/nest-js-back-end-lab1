@@ -1,5 +1,5 @@
 import {IS_ENUM, IsNotEmpty, IsNumber, IsString} from "class-validator";
-import {CurrencyEnum} from "../currency/currency.enum";
+
 
 
 export class CreateUserDto {
